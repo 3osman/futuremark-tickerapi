@@ -17,12 +17,7 @@
 //= require turbolinks
 //= require_tree .
 
-$(function(){
-  	$('#world-map').vectorMap();
-    $('#data-tab').DataTable({
-    	"bPaginate": false,
-    	"bInfo" : false
-    });
-});
+
+
 
 

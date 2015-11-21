@@ -15,10 +15,3 @@
  *= require_self
  */
 
-#world-map {
-    height:96vh;
-}
-
-#data-tab-wrapper{
-	display: none;
-}

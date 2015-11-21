@@ -3,7 +3,6 @@ include EntryUtil
 include AverageUtil
 next_id = 0
 loop_id = 1
-cached_averages = {}
 scheduler = Rufus::Scheduler::singleton
 
 scheduler.every '5s' do
@@ -12,13 +11,13 @@ scheduler.every '5s' do
 	if !entries_poller.entries.nil?
 		entries_entities = EntryUtil.new_entries(entries_poller.entries)
 		if !entries_entities.nil?
-			AverageUtil.handle_averages_cache(cached_averages, entries_entities)
+			AverageUtil.handle_averages_cache(DataManagerController.get_cached_values, entries_entities)
 			next_id = entries_entities.last.e_id + 1
 		end
 	end	
 	puts "loop #{loop_id} done"
-	puts "Number of Countries: #{cached_averages.size}"
-	puts "#{cached_averages.keys.join ","}"
+	puts "Number of Countries: #{DataManagerController.get_cached_values.size}"
+	#puts "#{DataManagerController.get_cached_values.keys.join ","}"
 	puts "=========================================="
 	loop_id += 1
 end

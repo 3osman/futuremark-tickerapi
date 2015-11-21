@@ -42,14 +42,13 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
- 
+  gem 'sqlite3'
   gem 'guard-minitest', '~> 2.3.2' # https://github.com/guard/guard-minitest
   # Colorize minitest output and show failing tests instantly.
   gem 'minitest-colorize', git: 'https://github.com/ysbaddaden/minitest-colorize' 
   # https://github.com/Springest/terminal-notifier-guard
   gem 'terminal-notifier-guard', '~> 1.5.3'
 
-  gem 'sqlite3'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

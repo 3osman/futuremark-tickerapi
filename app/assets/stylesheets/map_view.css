@@ -1,0 +1,12 @@
+#world-map {
+    height:96vh;
+    padding-right: 6px;
+}
+
+#data-tab-wrapper{
+	display: none;
+	padding-left: 0px;
+}
+.dataTables_wrapper .dataTables_filter input{
+    border-radius: 5px;
+}
