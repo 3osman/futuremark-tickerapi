@@ -1,11 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  country_code: MyString
-  overall_score: 
-  test_name: MyString
+
+  country_code: EG
+  e_id: 123345
+  overall_score: 15
+  test_name: testone
 
 two:
-  country_code: MyString
-  overall_score: 
-  test_name: MyString
+  country_code: FI
+  e_id: 123350
+  overall_score: 30
+  test_name: testtwo
