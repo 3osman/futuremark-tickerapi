@@ -8,7 +8,6 @@ module AverageUtil
 				create_new_country_entry(cached_averages,e)
 			end
 		end
-		return cached_averages
 	end
 
 	def create_new_country_entry(cached_averages, entry)
