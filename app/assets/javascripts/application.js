@@ -17,7 +17,6 @@
 //= require turbolinks
 //= require_tree .
 
-
-
+setTimeout(buildMap, 0);
 
 
