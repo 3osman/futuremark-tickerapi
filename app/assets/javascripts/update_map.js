@@ -22,7 +22,7 @@ $(function(){
         }
     });
     $('#data-tab').DataTable({
-        "scrollY": "600px",
+        "scrollY": "480px",
         "scrollCollapse": true,
         "bPaginate": false,
         "bInfo" : false,
@@ -49,7 +49,7 @@ function updateCountryStats(selected) {
             
 
             $('#data-tab-wrapper').show();
-           // $('#country-stats').html(tableData);
+            $('#country-name').html(selected);
         }
     });
     

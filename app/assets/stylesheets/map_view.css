@@ -10,3 +10,9 @@
 .dataTables_wrapper .dataTables_filter input{
     border-radius: 5px;
 }
+body {
+	font-family: Ubuntu;
+}
+h3 {
+	font-weight: bold;
+}
