@@ -2,10 +2,9 @@ var selected;
 $(function(){
    
     $('#data-tab').DataTable({
-        "scrollY": "480px",
+        "scrollY": "500px",
         "scrollCollapse": true,
         "bPaginate": false,
-        "bFilter": false,
         "bInfo" : false,
         "aoColumnDefs": [
           { "bSearchable": false, "aTargets": [ 1 ] }

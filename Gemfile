@@ -26,14 +26,14 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rufus-scheduler'
 gem 'httparty'
 
-gem "twitter-bootstrap-rails"
+gem 'twitter-bootstrap-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
-
+gem 'sqlite3'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -41,7 +41,6 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
-  gem 'sqlite3'
   gem 'guard-minitest', '~> 2.3.2' # https://github.com/guard/guard-minitest
   # Colorize minitest output and show failing tests instantly.
   gem 'minitest-colorize', git: 'https://github.com/ysbaddaden/minitest-colorize' 
