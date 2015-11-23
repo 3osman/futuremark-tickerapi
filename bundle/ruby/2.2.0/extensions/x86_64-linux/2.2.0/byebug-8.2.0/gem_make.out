@@ -1,0 +1,15 @@
+/home/osman/.rvm/rubies/ruby-2.2.2/bin/ruby -r ./siteconf20151122-23514-3v8sez.rb extconf.rb
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+compiling locker.c
+compiling threads.c
+compiling breakpoint.c
+compiling context.c
+compiling byebug.c
+linking shared-object byebug/byebug.so
+
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.so ./.gem.20151122-23514-1fofqnc/byebug

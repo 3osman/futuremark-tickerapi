@@ -23,7 +23,7 @@ class DataManagerController < ApplicationController
 		render json: @vals
 
 	end
-	def send_to_browser
+	def country_values
 		freq = {}
 		@@cached_averages.each do |k,v|
 			freq[k] =  @@cached_averages[k].length

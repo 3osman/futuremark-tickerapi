@@ -17,7 +17,9 @@
 //= require turbolinks
 //= require_tree .
 
-setTimeout(buildMap, 0);
+window.onload = function() {
+	setTimeout(buildMap, 0);
+};
 
 
 

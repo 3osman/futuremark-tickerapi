@@ -1,0 +1,31 @@
+
+JRUBY
+
+1) Rufus::Scheduler::CronLine fall time correctly decrements every minute through a DST transition
+
+Failure/Error: expect(points).to eq([
+
+expected: ["0101-8(0901)", "0100-8(0900)", "0159-7(0859)", "0158-7(0858)"]
+     got: ["0101-7(0801)", "0100-7(0800)", "0059-7(0759)", "0058-7(0758)"]
+
+(compared using ==)
+# ./spec/cronline_spec.rb:1013:in `(root)'
+# ./spec/spec_helper.rb:69:in `in_zone'
+# ./spec/cronline_spec.rb:1001:in `(root)'
+
+
+RUBY1.8
+
+1) Rufus::Scheduler::CronLine fall time correctly decrements every minute through a DST transition
+
+Failure/Error: expect(points).to eq([
+
+expected: ["0101-8(0901)", "0100-8(0900)", "0159-7(0859)", "0158-7(0858)"]
+     got: ["0101-7(0801)", "0100-7(0800)", "0059-7(0759)", "0058-7(0758)"]
+
+(compared using ==)
+# ./spec/cronline_spec.rb:1013
+# ./spec/spec_helper.rb:69:in `call'
+# ./spec/spec_helper.rb:69:in `in_zone'
+# ./spec/cronline_spec.rb:1001
+

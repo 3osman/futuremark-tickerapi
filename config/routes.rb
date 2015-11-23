@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   root "data_manager#index"
   get 'data_manager/update_table'
-  get 'data_manager/send_to_browser'
+  get 'data_manager/country_values'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

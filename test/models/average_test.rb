@@ -1,7 +1,5 @@
 require 'test_helper'
-
+require 'average_util' 
 class AverageTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+	
 end
