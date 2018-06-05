@@ -1,28 +1,102 @@
-== README
+== Usage
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* You should have Rails, Ruby to run the app on a local (webkit) server. 
+* Clone or unzip the project, go to the directory and run: bundle install. 
+* If everything goes smoothly, you can now type rails s and the server will run. If you are familiar with rails, we don’t do rake db:migrate as no models are persisted in a database
+* Navigate to http://localhost:3000 on your browser
+* Watch it here https://www.youtube.com/watch?v=A4ZIrhQBMj0&feature=youtu.be
 
-Things you may want to cover:
+== Models and Data Management
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Everything is cached, we don’t really want to persist the data in the database, just do some calculations on the fly on the cache. So I created two tableless models: Entry, and Average.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+At the same time, I keep a map of cached average values as follows:
+* Cached averages = { country : { test : Average } }
+Note that average here is an instance of the model Average. No data is persisted in the approach, but the design is robust enough for the data to be persisted if needed: models inherit from ActiveRecord (persistence model in Rails).
+
+== Modules and Services
+
+Basically I have four modules:
+
+* Scheduler is used to schedule both the remote data poller and the utility classes calls, I pull data every 5 seconds. 
+
+* Poller calls the API, and passes data to the utility classes
+
+* Utility Classes are responsible for parsing the entries, and handling the averaging of the values in the cached averages hashmap
+
+* Data Manager handles the cache and respond to calls from the client side
+
+== Code Structure
+
+* As any typical Rails app, models are stored in app/models
+* The poller goes in the lib directory, as it isn’t app specific or exclusive to my app. So Ideally I could then pull out the code from me lib in your project, and drop it into someone else's lib/ in another project and it would still work just fine. 
+* The scheduler goes in the config/initializers folder so it wakes up with initialization of the project
+* The utilities are in the app/modules folder
+* The data manager will be a normal app controller, as it handles the data and interacts with the View
+* The only view we need can be found at app/view/data_manager
+* One custom css and one custom Javascript files can be found in app/asset/stylesheets and app/assets/javascripts
+
+
+== API
+
+* GET /data_manager/update_table?country=COUNTRY_CODE
+	Returns set of tests and their average scores/number of entries
+* Example: localhost:3000/data_manager/update_table?country=FI
+
+    "Fire Strike": {
+        "current_average": 1097,
+        "number_of_entries": 10,
+    },
+    "3DMark 11 Performance": {
+        "current_average": 4482,
+        "number_of_entries": 4,
+    },
+    "Sky Diver": {
+        "current_average": 13625,
+        "number_of_entries": 3,
+    }
+
+* GET /data_manager/country_values
+	Returns number of aggregations done and countries with their number of tests
+* Example: localhost:3000/data_manager/country_values
+
+ { 
+  "count": 33,
+  "freq": {
+    "GB": 3,
+    "CN": 2,
+    "DE": 6,
+    "TW": 3,
+    "KR": 4,
+    "UA": 1,
+    "FR": 6,
+    "US": 2,
+    "CA": 4,
+    "JP": 6,
+   }
+  }
+
+== Client Side
+
+The client side is a single page, with javascript and ajax handling data exchange and views. AJAX calls are done every 5 seconds to update countries’ colors (number of tests), and populate tables (on click and while shown). JSON objects returned from the server are parsed and then passed to the appropriate objects. For the tables, datatables.js was used. For the map, jvectormap.js was used.
+
+== User Interface
+
+
+
+The client view is typically a map, each country is color coded based on the number of different tests (not number of submissions per test). Colors (scores) are updated dynamically without refreshing. 
+
+On clicking a country, it gets selected, and it is color changes to yellowish. A table appears on the right side, with country name on top, a generic search bar. Each row has test name, number of entries for this test, and average score. The table is updated dynamically without clicking the map again. The table allows sorting by column. When the table gets long, a vertical slider is shown.
+A loop counter with number of countries is shown on top of this. Each loop mean an average of aggregated values was computed.
+
+== Assumptions
+
+* Ignore entries if country code is --
+* There is no need to see the single test values at all, only average at this moment
+* Averages are calculated as integers
+
+== Limitations and todos
+
+* Unit and functional testing
+* An alternate visualization of the data, which aggregates scores by test name (not by country)
